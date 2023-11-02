@@ -11,10 +11,11 @@ const promise = new Promise((resolve, reject) => {
   }
 });
 
-promise.then(
-  (value) => console.log(`Yay! Promise resolved with response: ${value}`),
-  (reason) => console.log(`Boo. Promise rejected with response: ${reason}`)
-);
+promise
+  .then((value) => console.log(`Yay! Promise resolved with response: ${value}`))
+  .catch((reason) =>
+    console.log(`Boo. Promise rejected with response: ${reason}`)
+  );
 
 /* ==============
 // first iteration with some description:
