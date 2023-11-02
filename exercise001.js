@@ -1,48 +1,29 @@
-/*   original promise
-const promise = new Promise((resolve, reject) => {
-  // Generate random number between 0 and 9
-  const randomInt = Math.floor(Math.random() * 10);
+// create the promise object, the response, reject attribute
+// is produced in the promise object
+const myPromise = () => {
+  return new Promise((resolve, reject) => {
+    const randomInt = Math.floor(Math.random() * 10);
 
-  if (randomInt % 2 === 0) {
-    // Success
-    setTimeout(() => resolve("done"), 2000);
-  } else {
-    // Failure
-    setTimeout(() => reject("error"), 2000);
-  }
-});
-********************************/
+    if (randomInt % 2 === 0) {
+      // Success
+      setTimeout(() => resolve("done"), 2000);
+    } else {
+      // Failure
+      setTimeout(() => reject("error"), 2000);
+    }
+  });
+};
 
-// use async / await
-
+// create async function and incorporate await
+// in the try section.
 const getPromiseResponse = async () => {
   try {
-    await new Promise((resolve, reject) => {
-      // Generate random number between 0 and 9
-      const randomInt = Math.floor(Math.random() * 10);
-
-      if (randomInt % 2 === 0) {
-        // Success
-        setTimeout(() => resolve("done"), 2000);
-      } else {
-        // Failure
-        setTimeout(() => reject("error"), 2000);
-      }
-    });
-
-    console.log(`Yay! Promise resolved with response: done`);
+    const value = await myPromise();
+    // I was hoping "await myPromise() suffice but comes with undefined value
+    console.log(`Yay! Promise resolved with response: ${value}`);
   } catch (reason) {
-    console.log(`Boo. Promise rejected with response: error`);
+    console.log(`Boo. Promise rejected with response: ${reason}`);
   }
 };
 
 getPromiseResponse();
-
-/*
-promise
-  .then((value) => console.log(`Yay! Promise resolved with response: ${value}`))
-  .catch((reason) =>
-    console.log(`Boo. Promise rejected with response: ${reason}`)
-  );
-
-  */
